@@ -110,7 +110,8 @@ int main() {
         string q;
         cout << "Find: ";
         cin >> q;
-        cout << trie.find(q) << endl;
+        bool find_result = trie.find(q);
+        cout << ((find_result) ? "true" : "false") << endl;
         cout << "How many words to insert: ";
     }
 }
