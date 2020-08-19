@@ -52,6 +52,15 @@ class Trie {
             }
         }
 
+        bool find_Trie(string str, TrieNode* node) {
+            if (!str.length()) {
+                if (node->end) return true;
+                else return false;
+            }
+            if (node->next_nodes.find(str[0]) == node->next_nodes.end()) return false;
+            return find_Trie(str.substr(1), node->next_nodes[str[0]]);
+        }
+
     public:
         Trie() {
             this->head = new TrieNode(' ');
@@ -76,9 +85,9 @@ class Trie {
             return strings;
         }
 
-        // bool find(string str) {
-        //     find_Trie(str, this->head);
-        // }
+        bool find(string str) {
+            return find_Trie(str, this->head);
+        }
 };
 
 int main() {
@@ -98,6 +107,10 @@ int main() {
         for (auto str : strs) {
             cout << str << endl;
         }
+        string q;
+        cout << "Find: ";
+        cin >> q;
+        cout << trie.find(q) << endl;
         cout << "How many words to insert: ";
     }
 }
